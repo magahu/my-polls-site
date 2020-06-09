@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Inicio de sesión</title>
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'users:login' %}" method="POST" class="form">
+    {% csrf_token %}
+
+        <h1 class="form-title">Encuestados</h1>
+
+        <input type="text" name="username" placeholder="Nombre de usuario">
+        <input type="password" name="password" placeholder="Contraseña">
+
+        <button class="form-button">
+            <p class="text-button"><strong>Iniciar sesión</strong></p>
+        </button>
+
+</form>
+
+<div class="form">
+    <p class="form-option">No tienes cuenta? <a href="{% url 'users:signup' %}"><strong>Registrarte</strong></a></p>
+
+</div>
+
+{% endblock %}

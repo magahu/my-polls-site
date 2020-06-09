@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Registro</title>
+{% endblock %}
+
+{% block content %}
+<form action="{%  url 'users:signup' %}" method="POST" class="form">
+
+    {% csrf_token %}
+
+    <h1 class="form-title">Encuestados</h1>
+
+    <input type="text" name="username" placeholder="Nombre de usuario">
+    <input type="password" name="password" placeholder="Contraseña">
+    <input type="password" name="confirmation" placeholder="Confirmar contraseña">
+
+    <button class="form-button">
+        <p class="text-button">Registrarse</p>
+    </button>
+
+</form>
+
+<div class="form">
+    <p class="form-option">Ya tienes cuenta? <a href="{% url 'users:login' %}"><strong>Iniciar sesión</strong></a></p>
+
+</div>
+{% endblock %}

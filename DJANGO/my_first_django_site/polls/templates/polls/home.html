@@ -1,0 +1,27 @@
+{% extend 'base.html'%}
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+{% block content %}
+<div class="options">
+    <div class="option">
+        <a class="option" href="{% url 'polls:create' %}">
+            <p>Crear encuesta</p>
+        </a>
+        <p class="info">
+            Crea tu propia encuesta para los usuarios de Encuestados.
+        </p>
+    </div>
+    <div class="option">
+        <a class="option" href="{% url 'polls:index' %}">
+            <p>Ver encuestas</p>
+        </a>
+        <p class="info">
+            Ve las encuestas disponibles, elige una y participa votando por la 
+            opción de tu elección.
+        </p>
+    </div>
+</div>
+{% endblock %}
