@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+{% extends 'polls/base.html' %}
 {% load static %}
 
 {% block title %}
@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="options">
     <div class="option">
         <a class="option-text" href="{% url 'polls:create' %}">
