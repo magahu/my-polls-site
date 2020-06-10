@@ -1,0 +1,32 @@
+{% extends 'polls/base.html'%}
+{% load static %}
+
+{% block title %}
+<title>Crear encuesta</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/polls/create.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="forms">
+
+    <h2 class="form-title">Comienza a encuestar!</h2>
+    
+    <form action="{% url 'polls:create-question' %}" method="POST">
+        {% csrf_token %}
+
+        <p class="form-text">Ingresa tu pregunta:</p>
+
+        <input type="text" name="question_text" placeholder="Pregunta...">
+        <button class="form-button">
+            <p class="text-button">Enviar</p>
+        </button>
+    </form>
+    
+
+
+</div>
+{% endblock %}

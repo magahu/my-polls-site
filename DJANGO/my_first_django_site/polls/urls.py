@@ -10,9 +10,14 @@ urlpatterns = [
         name='home'
     ),
     path(
-        route='create/',
-        view=views.create,
-        name='create'
+        route='create-question/',
+        view=views.create_question,
+        name='create-question'
+    ),
+    path(
+        route='<int:question>/create-choices/',
+        view=views.create_choices,
+        name='create-choices'
     ),
     path(
         route='index/',

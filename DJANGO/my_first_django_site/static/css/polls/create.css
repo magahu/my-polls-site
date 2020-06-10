@@ -1,0 +1,30 @@
+.forms{
+    padding-top: 60px;
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+
+.form-title{
+    margin: 10px;
+    text-align: center;
+    color: black;
+    font-family: sans-serif;
+    font-weight: lighter;
+}
+
+.form-text{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-button{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:  darkslateblue;
+    border: 1px solid silver;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.text-button{
+    color: white;
+    margin: 10px;
+}
