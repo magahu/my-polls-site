@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 <title>Registro</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/users/base.css' %}">
 {% endblock %}
 
 {% block content %}
