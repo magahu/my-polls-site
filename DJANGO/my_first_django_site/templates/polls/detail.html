@@ -13,17 +13,21 @@
 <div class="detail-container">
 
 <div class="detail">
+    <p class="title">@{{user.username}} pregunta:</p>
     <p class="question">{{question.question_text}}</p>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
     <form action="{% url 'polls:vote' question.id %}" method="POST" class="form">
         {% csrf_token %}
+
+
             {% for choice in question.choice_set.all %}
                 <div class="choice">
                     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
                     <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
                 </div>   
             {% endfor %}
+
 
         <input type="submit" value="Votar" class="form-button">
         

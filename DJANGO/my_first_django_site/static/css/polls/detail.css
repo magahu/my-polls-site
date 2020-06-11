@@ -7,6 +7,15 @@
     padding: 5% 10%
 }
 
+.title{
+    margin: 10px;
+    text-align: center;
+    color: black;
+    font-family: sans-serif;
+    font-weight: lighter;
+}
+
+
 .question{
     margin: 10px;
     text-align: center;

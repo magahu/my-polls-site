@@ -1,8 +1,13 @@
+"""polls Views"""
+
 from django.shortcuts import render, reverse, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Question, Choice
 from django.utils import timezone
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+#class-based views
+from django.views import generic
 
 
 def home(request):
@@ -13,14 +18,17 @@ def create_question(request):
     if request.method == 'POST':
         #import pdb; pdb.set_trace()
         if request.POST['question_text']:
+            user_pk = request.POST['user']
+            user = User.objects.get(pk=user_pk)
             question_text = request.POST['question_text']
             pub_date =timezone.now()
-            question = Question.objects.create(question_text=question_text, pub_date=pub_date)
+            question = Question.objects.create(user=user, question_text=question_text, pub_date=pub_date)
             return HttpResponseRedirect(reverse('polls:create-choices', args=(question.id,)))
 
     return render(request, 'polls/create.html')
 
 
+@login_required
 def create_choice(request, question):
     question = get_object_or_404(Question, pk=question)
     if request.method == 'POST':
@@ -34,16 +42,31 @@ def create_choice(request, question):
 
 
 
-def index(request):
-    polls = Question.objects.all().order_by('-pub_date')
-    return render(request, 'polls/index.html', {'polls':polls})
+#def index(request):
+#    polls = Question.objects.all().order_by('-pub_date')
+#    return render(request, 'polls/index.html', {'polls':polls})
 
 
-def detail(request, question):
-    question = get_object_or_404(Question, pk=question)
-    return render(request, 'polls/detail.html', {'question':question})
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'polls'
+
+ 
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-pub_date')
 
 
+#def detail(request, question):
+#    question = get_object_or_404(Question, pk=question)
+#    return render(request, 'polls/detail.html', {'question':question})
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+@login_required
 def vote(request, question):
     question = get_object_or_404(Question, pk=question)
     try:
@@ -64,6 +87,11 @@ def vote(request, question):
     return render(request, 'polls/detail.html', {'question':question})
 
 
-def results(request, question):
-    question = get_object_or_404(Question, pk=question)
-    return render(request, 'polls/results.html', {'question':question})
+#def results(request, question):
+#    question = get_object_or_404(Question, pk=question)
+#    return render(request, 'polls/results.html', {'question':question})
+
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'

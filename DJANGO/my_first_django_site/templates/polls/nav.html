@@ -3,13 +3,13 @@
 <nav class="main-nav">
     <ul style="list-style: none; display: flex;">
         <li>
-            <a href="">
-                <img src="{% static 'icons/settings.png'%}" width="30px" class="icon">
+            <a href="{% url 'polls:home' %}">
+                <img src="{% static 'icons/gray-home.png'%}" width="30px" class="icon">
             </a>     
         </li>
         <li>
-            <a href="">
-                <img src="{% static 'icons/settings.png'%}" width="30px" class="icon">
+            <a href="{% url 'polls:create-question' %}">
+                <img src="{% static 'icons/file.png'%}" width="30px" class="icon">
             </a>
         </li>
         
@@ -19,13 +19,13 @@
 
     <ul style="list-style: none; display: flex;">
         <li>
-            <a href="">
-                <img src="{% static 'icons/settings.png'%}" width="30px" class="icon">
+            <a href="{% url 'polls:index' %}">
+                <img src="{% static 'icons/writing.png'%}" width="30px" class="icon">
             </a>
         </li>
         <li>
-            <a href="">
-                <img src="{% static 'icons/settings.png'%}" width="30px" class="icon">
+            <a href="{% url 'users:logout' %}">
+                <img src="{% static 'icons/logout.png'%}" width="28px" class="icon">
             </a>
         </li>
     </ul>

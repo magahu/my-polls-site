@@ -18,7 +18,7 @@
         <ul>
             {% for choice in question.choice_set.all %}
             <li>
-                <p class="choice">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</p>
+                <p class="choice">{{ choice.choice_text }} -- {{ choice.votes }} voto{{ choice.votes|pluralize }}</p>
             </li>
             {% endfor %}
         </ul>

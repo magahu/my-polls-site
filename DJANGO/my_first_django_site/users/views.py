@@ -1,3 +1,5 @@
+"""users Views"""
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import SignupForm
@@ -23,14 +25,17 @@ def signup(request):
                      # redirect to a new URL:
                     return redirect('users:login')
                 except IntegrityError:
-                    return render(request, 'users/sinup.html', {'form':form})
+                    # Always return an HttpResponseRedirect after successfully dealing
+                    # with POST data. This prevents data from being posted twice if a
+                    # user hits the Back button.
+                    return redirect('users:signup')
             else:
                 return render(request, 'users/signup.html', {'form':form})
 
     return render(request, 'users/signup.html')
 
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -47,8 +52,9 @@ def login(request):
             return render(request, 'users/login.html')
     return render(request, 'users/login.html')
   
+  
 @login_required
-def logout(request):
+def logout_view(request):
     logout(request)
     # Redirect to a success page.
     return redirect('users:login')

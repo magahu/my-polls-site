@@ -19,6 +19,8 @@
     
         <form action="{% url 'polls:create-question' %}" method="POST">
             {% csrf_token %}
+
+            <input type="hidden" name="user" value="{{request.user.pk}}">
     
             <p class="form-text">Ingresa tu pregunta:</p>
     

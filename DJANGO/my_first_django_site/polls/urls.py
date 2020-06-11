@@ -21,12 +21,12 @@ urlpatterns = [
     ),
     path(
         route='index/',
-        view=views.index,
+        view=views.IndexView.as_view(),
         name='index'
     ),
     path(
-        route='<int:question>/detail',
-        view=views.detail,
+        route='<int:pk>/detail',
+        view=views.DetailView.as_view(),
         name='detail'
     ),
     path(
@@ -35,8 +35,8 @@ urlpatterns = [
         name='vote'
     ),
     path(
-        route='<int:question>/results',
-        view=views.results,
+        route='<int:pk>/results',
+        view=views.ResultsView.as_view(),
         name='results'
     )
 ]
