@@ -16,7 +16,7 @@ urlpatterns = [
     ),
     path(
         route='<int:question>/create-choices/',
-        view=views.create_choices,
+        view=views.create_choice,
         name='create-choices'
     ),
     path(
@@ -24,4 +24,19 @@ urlpatterns = [
         view=views.index,
         name='index'
     ),
+    path(
+        route='<int:question>/detail',
+        view=views.detail,
+        name='detail'
+    ),
+    path(
+        route='<int:question>/vote',
+        view=views.vote,
+        name='vote'
+    ),
+    path(
+        route='<int:question>/results',
+        view=views.results,
+        name='results'
+    )
 ]

@@ -11,20 +11,28 @@
 
 {% block content %}
 
-<div class="forms">
+<div class="form-container">
 
-    <h2 class="form-title">Comienza a encuestar!</h2>
+    <div class="form">
+
+        <h2 class="form-title">Comienza a encuestar!</h2>
     
-    <form action="{% url 'polls:create-question' %}" method="POST">
-        {% csrf_token %}
+        <form action="{% url 'polls:create-question' %}" method="POST">
+            {% csrf_token %}
+    
+            <p class="form-text">Ingresa tu pregunta:</p>
+    
+            <input type="text" name="question_text" placeholder="Pregunta...">
+            <button class="form-button">
+                <p class="text-button">Enviar</p>
+            </button>
+        </form>
 
-        <p class="form-text">Ingresa tu pregunta:</p>
+    </div>
 
-        <input type="text" name="question_text" placeholder="Pregunta...">
-        <button class="form-button">
-            <p class="text-button">Enviar</p>
-        </button>
-    </form>
+
+
+   
     
 
 

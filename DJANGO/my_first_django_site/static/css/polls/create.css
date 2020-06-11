@@ -1,7 +1,15 @@
-.forms{
-    padding-top: 60px;
-    border: 1px solid silver;
+.form-container{
+    padding: 15% 20%;
+ 
     border-radius: 5px;
+    display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.form{
+    border: 1px solid silver;
+    padding: 10%;
 }
 
 .form-title{
@@ -14,6 +22,7 @@
 
 .form-text{
     font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 .form-button{
@@ -26,5 +35,5 @@
 
 .text-button{
     color: white;
-    margin: 10px;
+    margin: 5px;
 }
