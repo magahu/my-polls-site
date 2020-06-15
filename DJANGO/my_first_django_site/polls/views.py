@@ -2,10 +2,11 @@
 
 from django.shortcuts import render, reverse, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Question, Choice
+from .models import Question, Choice, Vote
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 #class-based views
 from django.views import generic
 
@@ -54,7 +55,7 @@ class IndexView(generic.ListView):
  
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')
+        return Question.objects.order_by('pub_date')
 
 
 #def detail(request, question):
@@ -69,21 +70,36 @@ class DetailView(generic.DetailView):
 @login_required
 def vote(request, question):
     question = get_object_or_404(Question, pk=question)
+    user_pk = request.POST['user']
+    user = User.objects.get(pk=user_pk)
+    
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
+        vote = Vote.objects.filter(user=user, question=question, choice=selected_choice)
+        if not vote:
+            selected_choice.votes += 1
+            selected_choice.save()
+            vote = Vote.objects.create(user=user, question=question, choice=selected_choice)
+            # Always return an HttpResponseRedirect after successfully dealing
+            # with POST data. This prevents data from being posted twice if a
+            # user hits the Back button.
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
         return render(request, 'polls/detail.html', {
             'question': question,
             'error_message': "You didn't select a choice.",
         })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+    except IntegrityError:
+        return render(request, 'polls/detail.html', {
+            'question': question,
+            'error_message': "Ya has votado",
+            })
+
+    
+        
     return render(request, 'polls/detail.html', {'question':question})
 
 

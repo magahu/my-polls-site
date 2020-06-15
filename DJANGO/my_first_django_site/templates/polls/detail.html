@@ -15,11 +15,11 @@
 <div class="detail">
     <p class="title">@{{user.username}} pregunta:</p>
     <p class="question">{{question.question_text}}</p>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+    
     <form action="{% url 'polls:vote' question.id %}" method="POST" class="form">
         {% csrf_token %}
 
+            <input type="hidden" name="user" value="{{user.pk}}">
 
             {% for choice in question.choice_set.all %}
                 <div class="choice">
@@ -29,7 +29,11 @@
             {% endfor %}
 
 
-        <input type="submit" value="Votar" class="form-button">
+            {% if error_message %}
+            <p class="error-message"><strong>{{ error_message }}</strong></p>
+            {% else %}
+            <input type="submit" value="Votar" class="form-button">
+            {% endif %}
         
     </form> 
 
