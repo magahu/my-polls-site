@@ -17,12 +17,28 @@
     <h1 class="form-title">Encuestados</h1>
 
     <input type="text" name="username" placeholder="Nombre de usuario">
+    {% if form.username.errors %}
+        {% for error in form.username.errors %}
+            <p class="errorlist">{{error}}</p>
+        {% endfor %}
+    {% endif %}
+
     <input type="password" name="password" placeholder="Contraseña">
+    {% if form.password.errors %}
+        {% for error in form.password.errors %}
+            <p class="errorlist">{{error}}</p>
+        {% endfor %}
+    {% endif %}
+
     <input type="password" name="confirmation" placeholder="Confirmar contraseña">
+
+    <p class="errorlist">{{error_message}}</p>
 
     <button class="form-button">
         <p class="text-button">Registrarse</p>
     </button>
+
+    
 
 </form>
 

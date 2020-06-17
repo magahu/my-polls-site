@@ -18,5 +18,10 @@ urlpatterns = [
         route='logout/',
         view=views.logout_view,
         name='logout'
-        ),
+    ),
+    path(
+        route='<str:username>/profile',
+        view=views.ProfileView.as_view(),
+        name='profile'
+    )
 ]

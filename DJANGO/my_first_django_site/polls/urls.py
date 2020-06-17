@@ -38,5 +38,10 @@ urlpatterns = [
         route='<int:pk>/results',
         view=views.ResultsView.as_view(),
         name='results'
+    ),
+    path(
+        route='delete',
+        view=views.delete_poll,
+        name='delete'
     )
 ]

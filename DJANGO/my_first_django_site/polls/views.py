@@ -42,7 +42,6 @@ def create_choice(request, question):
     return render(request, 'polls/choices.html', {'question':question})
 
 
-
 #def index(request):
 #    polls = Question.objects.all().order_by('-pub_date')
 #    return render(request, 'polls/index.html', {'polls':polls})
@@ -55,7 +54,7 @@ class IndexView(generic.ListView):
  
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by('pub_date')
+        return Question.objects.order_by('-pub_date')
 
 
 #def detail(request, question):
@@ -75,7 +74,7 @@ def vote(request, question):
     
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
-        vote = Vote.objects.filter(user=user, question=question, choice=selected_choice)
+        vote = Vote.objects.filter(user=user, question=question)
         if not vote:
             selected_choice.votes += 1
             selected_choice.save()
@@ -85,21 +84,19 @@ def vote(request, question):
             # user hits the Back button.
             return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
+        else:
+            return render(request, 'polls/detail.html', {
+                'question': question,
+                'error_message': "Ya has votado",
+            })
+
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
         return render(request, 'polls/detail.html', {
             'question': question,
-            'error_message': "You didn't select a choice.",
+            'error_message': "Olvidaste seleccionar una opción",
         })
 
-    except IntegrityError:
-        return render(request, 'polls/detail.html', {
-            'question': question,
-            'error_message': "Ya has votado",
-            })
-
-    
-        
     return render(request, 'polls/detail.html', {'question':question})
 
 
@@ -111,3 +108,7 @@ def vote(request, question):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
+
+def delete_poll(request):
+    return redirect('profile')

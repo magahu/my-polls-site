@@ -6,6 +6,11 @@ from .forms import SignupForm
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from polls.models import Question
+#class-based views
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 def signup(request):
     # if this is a POST request we need to process the form data
@@ -29,9 +34,11 @@ def signup(request):
                     # with POST data. This prevents data from being posted twice if a
                     # user hits the Back button.
                     return redirect('users:signup')
-            else:
-                return render(request, 'users/signup.html', {'form':form})
+        
+        else:
+            return render(request, 'users/signup.html', {'form':form, 'error_message':'Los datos no se salvaron porque no eran validos'})
 
+    
     return render(request, 'users/signup.html')
 
 
@@ -58,3 +65,17 @@ def logout_view(request):
     logout(request)
     # Redirect to a success page.
     return redirect('users:login')
+
+
+class ProfileView(generic.DetailView, LoginRequiredMixin):
+    template_name = 'users/profile.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    queryset = User.objects.all()
+    context_object_name = 'user'
+
+    def get_context_data(self,  **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        context['questions'] = Question.objects.filter(user=user).order_by('-pub_date')
+        return context
