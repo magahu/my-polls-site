@@ -7,9 +7,26 @@ using the Django authentication system. I developed this project in Django 3.0.7
 The users app let people signup, login and has a basic profile. User model provides a control in votes and polls 
 publication.
 
-![Screenshot](screenshot.png)
+![Screenshot](README_screenshots/Screenshot_1.png)
+
+![Screenshot](README_screenshots/Screenshot_2.png)
+
+![Screenshot](README_screenshots/Screenshot_9.png)
 
 **Polls**
 The polls app let users create and view polls also vote them, displaying poll results and see a detail about 
 the poll and the user who created it.
+
+![Screenshot](README_screenshots/Screenshot_3.png)
+
+![Screenshot](README_screenshots/Screenshot_4.png)
+
+![Screenshot](README_screenshots/Screenshot_5.png)
+
+![Screenshot](README_screenshots/Screenshot_6.png)
+
+![Screenshot](README_screenshots/Screenshot_7.png)
+
+![Screenshot](README_screenshots/Screenshot_8.png)
+
 
