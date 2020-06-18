@@ -1,0 +1,35 @@
+{% extends 'polls/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Resultados</title>
+{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/polls/results.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="results-container">
+    <div class="results">
+
+        <h1 class="question">{{ question.question_text }}</h1>
+
+        <ul>
+            {% for choice in question.choice_set.all %}
+            <li>
+                <p class="choice">{{ choice.choice_text }} -- {{ choice.votes }} voto{{ choice.votes|pluralize }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'polls:index' %}" style="text-decoration-color: darkslateblue;">
+            <p style="text-align: center; color: darkslateblue; font-family: Arial, Helvetica, sans-serif;">
+                <strong>Ver más encuestas</strong>
+            </p>
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}

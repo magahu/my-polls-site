@@ -1,0 +1,47 @@
+{% extends 'polls/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{user.username}}</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="display: flex; justify-content: center; margin: 10px;">
+        <img src="{% static 'icons/gray-user.png' %}" width="60px">
+    <h1 class="title"><strong>@{{user.username}}</strong></h1>
+
+    </div>
+    
+    <div class="polls">
+        {% if not questions %}
+        <p class="question">Sin encuestas para mostrar</p>
+        {% else %}
+        {% for question in questions %}
+
+        <a href="{% url 'polls:detail' question.pk %}" style="text-decoration: none;">
+
+            <div class="poll">
+                <p class="question">{{question.question_text}}</p>
+                <p class="date">{{question.pub_date}}</p>
+                <a href="{% url 'polls:results' question.id %}" style="text-decoration-color: white;">
+                    <p style="text-align: center; color: white; font-family: Arial, Helvetica, sans-serif;">
+                        <strong>Ver resultados de esta encuesta</strong>
+                    </p>
+                </a>
+    
+            </div>
+
+        </a>
+        
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

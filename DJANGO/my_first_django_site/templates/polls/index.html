@@ -1,0 +1,35 @@
+{% extends 'polls/base.html'%}
+{% load static %}
+
+{% block title %}
+<title>Indice</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/polls/index.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="polls-container">
+    <div class="polls">
+
+        {% for poll in polls %}
+        <div class="poll">
+            <a href="{% url 'polls:detail' poll.pk %}" style="text-decoration: none;">
+                <p class="question">{{poll.question_text}}</p>
+                <p class="date">{{poll.pub_date}}</p>
+            </a>
+
+            <a href="{% url 'polls:results' poll.id %}" style="text-decoration-color: white;">
+                <p style="text-align: center; color: white; font-family: Arial, Helvetica, sans-serif;">
+                    <strong>Ver resultados de esta encuesta</strong>
+                </p>
+            </a>
+        
+        
+        </div> 
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

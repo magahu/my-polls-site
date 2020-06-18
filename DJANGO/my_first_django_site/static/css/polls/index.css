@@ -1,0 +1,31 @@
+.polls-container{
+    padding: 10%;
+}
+
+.polls{
+    border: 1px solid silver;
+    padding: 5%;
+}
+
+.poll{
+    margin: 10px;
+    border: 1px solid silver;
+    background-color:  darkslateblue;
+}
+
+.question{
+    margin: 10px;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.date{
+    margin: 10px;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    font-weight: lighter;
+}

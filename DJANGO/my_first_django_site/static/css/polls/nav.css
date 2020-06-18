@@ -1,0 +1,30 @@
+
+.main-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0em;
+    background-color: whitesmoke;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    border-bottom: 1px solid silver;
+    height: 65px;
+}
+
+body{
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    margin: 10px;
+    text-align: center;
+    color: grey;
+    font-family: sans-serif;
+}
+
+.icon{
+    margin: 0 20px 0 0;
+}
