@@ -1,6 +1,6 @@
 # MY POLLS SITE
 
-"Encuestados" is public site for share and solve polls based on the "Writing your first Django app" tutorial
+**Encuestados** is public site for share and solve polls based on the "Writing your first Django app" tutorial
 in the Django documentation but improve it adding a complete users interface and a more complex and safe functionality
 using the Django authentication system. I developed this project in Django 3.0.7 and works with two apps: **users and polls**.
 
