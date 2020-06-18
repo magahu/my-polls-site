@@ -32,7 +32,7 @@ the poll and the user who created it.
 **Add choices**
 ![Screenshot](README_screenshots/Screenshot_5.png)
 
-**Poll**
+**Poll detail**
 ![Screenshot](README_screenshots/Screenshot_6.png)
 
 **Poll results**
